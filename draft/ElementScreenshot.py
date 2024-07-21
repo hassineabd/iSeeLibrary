@@ -4,10 +4,10 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 from robot.api.deco import keyword
 from appium.webdriver.common.appiumby import AppiumBy
-from locators._locatingstrategy import LocatingStrategy
+
 import robot
 
-class ElementScreenshot(_LoggingKeywords):
+class ElementScreenshot():
 
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
     ROBOT_LIBRARY_VERSION = '1.0.9'

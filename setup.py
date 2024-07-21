@@ -1,6 +1,6 @@
 import pathlib
 from os.path import abspath, dirname, join
-from setuptools import setup
+from setuptools import find_packages, setup
 
 CURDIR = dirname(abspath(__file__))
 
@@ -13,13 +13,14 @@ with open(join(CURDIR, 'requirements.txt')) as f:
 
 
 setup(
-    name="robotframework-appiumimage",
+    name="robotframework-appiumimageplugin",
     version="0.1.0",
     author="AI Driven ST Foundation",
     author_email="contact.aidrivenstfoundation@gmail.com",
     description="robot framework library that contains a set of functions for visual testing",
     long_description=README,
     long_description_content_type="text/x-rst",
+    packages=find_packages(),
     url="https://github.com/aidrivenst/iSeeLibrary",
     classifiers=[
         "Topic :: Software Development :: Testing",
@@ -30,7 +31,6 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
     ],
-    packages=["AppiumImagePlugin"],
     include_package_data=True,
     #install_requires=REQUIREMENTS,
     python_requires=">=3.6"

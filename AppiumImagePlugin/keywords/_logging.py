@@ -6,8 +6,10 @@ from robot.libraries.BuiltIn import RobotNotRunningError
 from robot.api import logger
 import base64
 import os
+from .keywordgroup import KeywordGroup
 
-class _LoggingKeywords():
+
+class _LoggingKeywords(KeywordGroup):
     LOG_LEVEL_DEBUG = ['DEBUG']
     LOG_LEVEL_INFO = ['DEBUG', 'INFO']
     LOG_LEVEL_WARN = ['DEBUG', 'INFO', 'WARN']

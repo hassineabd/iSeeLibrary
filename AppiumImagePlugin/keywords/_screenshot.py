@@ -2,14 +2,14 @@ from robot.api.deco import keyword, not_keyword
 import os
 import robot
 import base64
-from keywordgroup import KeywordGroup
+from .keywordgroup import KeywordGroup
 from AppiumImagePlugin.locators import ElementFinder
-from ._logging import _LoggingKeywords
+
 class _ScreenshotKeywords(KeywordGroup):
 
     def __init__(self):
         self._element_finder = ElementFinder()
-        self._logging = _LoggingKeywords()
+
     @not_keyword
     def capture_page_screenshot_base64(self):
         driver = self._current_application()

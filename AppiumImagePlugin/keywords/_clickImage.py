@@ -6,7 +6,6 @@ from robot.api.deco import *
 from .keywordgroup import KeywordGroup
 from AppiumImagePlugin.locators import ElementFinder
 
-
 class _ImageKeywords(KeywordGroup):
     def __init__(self):
         self._element_finder = ElementFinder()
@@ -43,30 +42,27 @@ class _ImageKeywords(KeywordGroup):
         found = False
 
         while not found and scale > 0:
-            scaled_image_path = scale_appium_image_single_factor(image_path, scale)
+            scaled_image_path = self.scale_appium_image_single_factor(image_path, scale)
             
             with open(scaled_image_path, "rb") as image_file:
                 encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
             
             try:
                 element = driver.find_element(AppiumBy.IMAGE, encoded_string)
-                elements = driver.find_elements(AppiumBy.IMAGE, encoded_string)
-                logger.info (f" elements found {elements}")
-                logger.info (f" length of elements {len(elements)}")
                 if element:
-                    logger.info(f"Element found {element}")
+                    self._info(f"Element found {element}")
                     location = element.location
-                    logger.info(f"Element location: x = {location['x']}, y = {location['y']}")
+                    self._info(f"Element location: x = {location['x']}, y = {location['y']}")
                     
                     element.click()
-                    logger.info(f"Element found and clicked at scale {scale}")
+                    self._info(f"Element found and clicked at scale {scale}")
                     found = True
                     exit
-                else:
-                    logger.info(f"Element not found at scale {scale}, trying smaller scale.")
+                # else:
+                #     logger.info(f"Element not found at scale {scale}, trying smaller scale.")
             except Exception as e:
-                logger.info(f"Exception occurred at scale {scale}: {e}")
-                logger.info(f"Element not found at scale {scale}, trying smaller scale.")
+                self._info(f"Exception occurred at scale {scale}: {e}")
+                self._info(f"Element not found at scale {scale}, trying smaller scale.")
 
             scale -= 0.1
 
